@@ -1,0 +1,31 @@
+.list-item-wrap{
+  margin: 30px 0;
+  .list-item{
+    padding: 15px;
+    border: solid 1px #d8dde6;
+    border-radius: 8px;
+  }
+}
+.tbnail-wrap{
+  width: 56px;
+  height: 56px;
+  display: inline-block;
+  border-radius: 100%;
+  overflow: hidden;
+  img{
+    display: block;
+    height: 100%;
+    width: auto;
+  }
+}
+.character-name{
+  font-size: 16px;
+  color: #4a4a4a;
+  height: 23px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.44;
+  letter-spacing: normal;
+  margin: 20px 0;
+}
