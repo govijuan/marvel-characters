@@ -18,7 +18,8 @@ class App extends Component {
     let privateKey = '25e4eb76f20df1b299bbe279a518afdc0bcb9557';
     let publicKey = '6c8dae1243d2a9fa52571c5b631cd19a';
     let timeStamp = Date.now().toString();
-    fetch('http://gateway.marvel.com/v1/public/characters?ts=' + timeStamp + '&apikey=' + publicKey + '&hash=' + md5(timeStamp + privateKey + publicKey))
+    let itemsLimit = 12;
+    fetch('http://gateway.marvel.com/v1/public/characters?limit=' + itemsLimit + '&ts=' + timeStamp + '&apikey=' + publicKey + '&hash=' + md5(timeStamp + privateKey + publicKey))
     .then()
     .then( results => {
       return results.json();
