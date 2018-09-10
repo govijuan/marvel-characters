@@ -3,4 +3,31 @@
       color: #ED1B24;
       font-weight: 300;
     }
+    .c-filter{
+      margin-bottom: 15px;
+    }
+}
+.search-input-wrap{
+  .form-group{
+    width: 100%;
+    margin-bottom: 0;
+  }
+  input{
+    border-right: none;
+    border-top: none;
+    border-left: none;
+    height: 50px;
+    border-radius: 8px;
+    border-bottom: 2px solid #9b9b9b;
+  }
+}
+.search-sorting-wrap{
+  i, .solting-text, .sort-order-arrow{
+    position: relative;
+    top: 15px;
+  }
+  .solting-text{
+    padding: 0 15px;
+    color:#4a4a4a;
+  }
 }

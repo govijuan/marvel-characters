@@ -1,3 +1,26 @@
 .c-filter-wrap h2 {
   color: #ED1B24;
   font-weight: 300; }
+
+.c-filter-wrap .c-filter {
+  margin-bottom: 15px; }
+
+.search-input-wrap .form-group {
+  width: 100%;
+  margin-bottom: 0; }
+
+.search-input-wrap input {
+  border-right: none;
+  border-top: none;
+  border-left: none;
+  height: 50px;
+  border-radius: 8px;
+  border-bottom: 2px solid #9b9b9b; }
+
+.search-sorting-wrap i, .search-sorting-wrap .solting-text, .search-sorting-wrap .sort-order-arrow {
+  position: relative;
+  top: 15px; }
+
+.search-sorting-wrap .solting-text {
+  padding: 0 15px;
+  color: #4a4a4a; }

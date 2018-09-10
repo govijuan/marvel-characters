@@ -12,32 +12,35 @@ class App extends Component {
     this.state = {
       items: [],
       isLoaded: false,
-      searchTerm: ''
+      searchTerm: '',
+      orderBy: 'name'
     }
   }
   
   changingSearchTerm(recievedSearchString){
-    this.searchInApi(recievedSearchString);
+    this.searchInApi(recievedSearchString, this.state.orderBy);
     this.setState({searchTerm: recievedSearchString});
+  }
+  changingListOrder(){
+    this.state.orderBy = this.state.orderBy === 'name' ? '-name': 'name'
+    this.searchInApi(this.state.searchTerm, this.state.orderBy);
   }
 
   componentDidMount() {
-    this.searchInApi();
+    this.searchInApi(this.state.searchTerm, this.state.orderBy );
     
   }
   
-  searchInApi(searchTerm){
-    if(searchTerm === undefined || searchTerm === ''){
-      searchTerm = '';
-    }else{
-      searchTerm = 'nameStartsWith=' + searchTerm  + '&'
-    }
+  searchInApi(searchTerm, orderByString){
+    searchTerm === undefined || searchTerm === '' ? searchTerm = ''
+                                                  : searchTerm = 'nameStartsWith=' + searchTerm  + '&';
     let privateKey = '25e4eb76f20df1b299bbe279a518afdc0bcb9557';
     let publicKey = '6c8dae1243d2a9fa52571c5b631cd19a';
     let timeStamp = Date.now().toString();
+    let orderBy = 'orderBy=' + orderByString;
     let itemsLimit = 12;
 
-    fetch('http://gateway.marvel.com/v1/public/characters?' + searchTerm + 'limit=' + itemsLimit + '&ts=' + timeStamp + '&apikey=' + publicKey + '&hash=' + md5(timeStamp + privateKey + publicKey))
+    fetch('http://gateway.marvel.com/v1/public/characters?' + searchTerm + orderBy + '&limit=' + itemsLimit + '&ts=' + timeStamp + '&apikey=' + publicKey + '&hash=' + md5(timeStamp + privateKey + publicKey))
     .then()
     .then( results => {
       return results.json();
@@ -47,8 +50,6 @@ class App extends Component {
         isLoaded: true,
         items: jsonResponse,
       }); 
-      console.log(this.state.items);
-      console.log( 'http://gateway.marvel.com/v1/public/characters?' + searchTerm + 'limit=' + itemsLimit + '&ts=' + timeStamp + '&apikey=' + publicKey + '&hash=' + md5(timeStamp + privateKey + publicKey));
     })
   }
 
@@ -64,7 +65,7 @@ class App extends Component {
     }else{
       contentToDisplay =
       <div className='characters-search-wrap container'>
-        <CharacterFilter  changeSearchTerm={this.changingSearchTerm.bind(this)}/>
+        <CharacterFilter  changeSearchTerm={this.changingSearchTerm.bind(this)} changeListOrder={this.changingListOrder.bind(this)} sortString={this.state.orderBy} />
         <List resultsObj={ this.state.items }/>
       </div>
     }          
